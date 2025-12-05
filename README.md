@@ -1,47 +1,50 @@
 # AI-Fault-Diagnosis
 A MATLAB-based predictive maintenance system for robotic actuators. Uses Machine Learning and signal processing to extract features from vibration data and classify mechanical faults (like bearing wear), bridging mechanical engineering with AI diagnostics.
 
-# AI-Based Fault Diagnosis for Robotic Actuators
+# AI-Based Fault Diagnosis for Robotic Actuators (Simulink & MATLAB)
 
-![System Block Diagram](link_to_your_diagram_image.png)
-*(Recommended: Upload a block diagram showing: Sensor -> Data -> Feature Extraction -> AI -> Diagnosis)*
+![Project Banner](path/to/your/simulink_screenshot.png)
 
-## 1. Project Overview
-This project implements a Machine Learning workflow to detect and classify mechanical faults in robotic actuators using vibration/current data. 
-* **Application:** Predictive maintenance for industrial robotic arms to reduce downtime.
-* **Target Faults:** Bearing wear, Gear tooth fracture, and Motor eccentricity.
-* **Accuracy:** Achieved **96.5%** classification accuracy using [Insert Method, e.g., SVM or CNN].
+## 📋 Project Overview
+This project focuses on the **predictive maintenance** of robotic actuators. Instead of relying on expensive physical prototypes, I developed a high-fidelity **Simulink model** to simulate the physical behavior of an actuator under various health conditions. 
 
-## 2. Technical Stack
-* **Language:** MATLAB R2023b
-* **Toolboxes:** Signal Processing Toolbox, Statistics and Machine Learning Toolbox.
-* **Hardware:** [Mention hardware if used, e.g., Dynamixel Actuators, Accelerometers, DAQ card].
+The generated synthetic data was used to train and compare two Machine Learning models—**Support Vector Machine (SVM)** and **Convolutional Neural Network (CNN)**—to automatically classify mechanical faults.
 
-## 3. Methodology
-The fault diagnosis pipeline follows these steps:
+## 🎯 Objectives
+1.  **Simulation:** Create a physics-based model of a robotic actuator in Simulink.
+2.  **Data Generation:** Simulate different failure modes to create a comprehensive dataset.
+3.  **Diagnosis:** Implement and compare AI models to detect faults without manual signal filtering.
 
-### A. Data Acquisition & Pre-processing
-* Raw vibration signals collected at **[Sampling Rate] Hz**.
-* Noise reduction using a low-pass filter to isolate mechanical frequencies.
+## 🛠️ Fault Classes
+The system is designed to detect the following 5 conditions:
+* ✅ **Healthy Condition** (Baseline)
+* ⚠️ **Motor Fault** (e.g., winding short/eccentricity)
+* ⚠️ **Gearbox Fault** (e.g., tooth wear)
+* ⚠️ **Bearing Fault** (e.g., inner/outer race degradation)
+* 🚨 **Mixed Fault** (Simultaneous occurrence of multiple failure modes)
 
-### B. Feature Extraction
-To bridge the gap between raw data and ML, statistical features were extracted from the Time and Frequency domains:
-* **Time Domain:** RMS, Kurtosis, Skewness (indicative of impulsive shocks from gear faults).
-* **Frequency Domain:** FFT Peak analysis to identify characteristic fault frequencies.
+## 🧠 Model Architecture & Methodology
 
-### C. Classification Model
-* **Algorithm:** [e.g., Support Vector Machine (SVM) / K-Nearest Neighbors (KNN)].
-* **Training/Test Split:** 70% Training, 30% Testing.
-* **Validation:** 5-fold Cross-Validation to ensure model robustness.
+### 1. Data Generation (Simulink)
+* Modeled the electromechanical dynamics of the actuator (DC Motor + Gear Train).
+* Faults were injected by modifying physical parameters (e.g., friction coefficients, inertia, resistance) within the Simulink blocks.
+* **Data Strategy:** Raw sensor data was captured directly. **No manual filters** or signal pre-processing (like FFT) were applied, allowing the AI models to learn features directly from the raw time-series data.
 
-## 4. Results
-The model successfully distinguished between Healthy, Inner Race Faults, and Broken Tooth conditions.
+### 2. Machine Learning Models
+I implemented two distinct approaches to compare performance:
 
-![Confusion Matrix](link_to_confusion_matrix_image.png)
-*(Upload a screenshot of your MATLAB confusion matrix here)*
+* **Approach A: Support Vector Machine (SVM)**
+    * Used as a baseline classical ML model.
+    * Classifies fault types based on hyperplanes in multidimensional space.
 
-## 5. How to Run
-1. Clone the repository.
-2. Open `main_diagnosis.m` in MATLAB.
-3. Load the sample data from the `/data` folder.
-4. Run the script to view the classification output and accuracy plots.
+* **Approach B: Convolutional Neural Network (CNN)**
+    * **Why CNN?** CNNs are powerful for time-series analysis as they can automatically extract hierarchical features from raw data, eliminating the need for manual feature engineering.
+    * Architecture: [e.g., 1D-CNN layers -> Pooling -> Fully Connected Layer].
+
+## 📊 Results & Comparison
+The models were evaluated based on classification accuracy on a held-out test set.
+
+**| Model | Performance Notes |**
+| **CNN** | **Best Performance.** Successfully captured complex patterns in the raw data, particularly for the "Mixed Fault" class. |
+| **SVM** |  **Good baseline** Struggled to distinguish between subtle fault signatures compared to the Deep Learning approach. |
+
