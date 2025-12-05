@@ -44,7 +44,8 @@ I implemented two distinct approaches to compare performance:
 ## 📊 Results & Comparison
 The models were evaluated based on classification accuracy on a held-out test set.
 
-**| Model | Performance Notes |**
-| **CNN** | **Best Performance.** Successfully captured complex patterns in the raw data, particularly for the "Mixed Fault" class. |
-| **SVM** |  **Good baseline** Struggled to distinguish between subtle fault signatures compared to the Deep Learning approach. |
+| **CNN** | 
+**Best Performance.** Successfully captured complex patterns in the raw data, particularly for the "Mixed Fault" class. |
+| **SVM** |  
+**Good baseline** Struggled to distinguish between subtle fault signatures compared to the Deep Learning approach. |
 
