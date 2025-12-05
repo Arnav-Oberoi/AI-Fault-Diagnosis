@@ -3,7 +3,7 @@ A MATLAB-based predictive maintenance system for robotic actuators. Uses Machine
 
 # AI-Based Fault Diagnosis for Robotic Actuators (Simulink & MATLAB)
 
-![Project Banner](AI-Fault_Diagnosis/Actuator_model.png)
+![Project Banner](Actuator_model.png)
 
 ## 📋 Project Overview
 This project focuses on the **predictive maintenance** of robotic actuators. Instead of relying on expensive physical prototypes, I developed a high-fidelity **Simulink model** to simulate the physical behavior of an actuator under various health conditions. 
