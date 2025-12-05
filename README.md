@@ -49,3 +49,5 @@ The models were evaluated based on classification accuracy on a held-out test se
 | **SVM** |
 **Good baseline** Struggled to distinguish between subtle fault signatures compared to the Deep Learning approach. 
 
+![App Output](App_Output.png)
+
